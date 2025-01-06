@@ -39,10 +39,10 @@ Replace `<project-directory>` with the name of your project directory.
 Create a virtual environment using `virtualenv`:
 
 ```bash
-virtualenv venv
+virtualenv my_env
 ```
 
-This will create a virtual environment named `venv`.
+This will create a virtual environment named `my_env`.
 
 ### Step 4: Activate the Virtual Environment
 
@@ -50,7 +50,7 @@ Activate the virtual environment using the following command:
 
 - On Windows:
   ```bash
-  venv\Scripts\activate
+  my_env\Scripts\activate
   ```
 - On macOS and Linux:
   ```bash
