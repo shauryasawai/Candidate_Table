@@ -62,10 +62,10 @@ Activate the virtual environment using the following command:
 With the virtual environment activated, install the required dependencies using `pip`:
 
 ```bash
-pip install -r requirements.txt
+pip install -r full-requirements.txt
 ```
 
-This will install all the dependencies listed in the `requirements.txt` file.
+This will install all the dependencies listed in the `full-requirements.txt` file.
 
 ### Step 6: Run Migrations
 
