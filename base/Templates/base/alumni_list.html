@@ -1,0 +1,82 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Alumni Database</h2>
+
+    <!-- Filters -->
+    <form method="GET" class="mb-3">
+        <div class="row">
+            <div class="col-md-4">
+                <select name="graduation_year" class="form-control">
+                    <option value="">Filter by Year</option>
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select name="department" class="form-control">
+                    <option value="">Filter by Department</option>
+                    {% for dept in departments %}
+                        <option value="{{ dept }}">{{ dept }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <select name="company_name" class="form-control">
+                    <option value="">Filter by Company</option>
+                    {% for company in companies %}
+                        <option value="{{ company }}">{{ company }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Apply Filters</button>
+        <a href="{% url 'alumni_list' %}" class="btn btn-secondary mt-2">Reset</a>
+    </form>
+
+    <!-- Table -->
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Graduation Year</th>
+                <th>Department</th>
+                <th>Company Name</th>
+                <th>Description</th>
+                <th>LinkedIn</th>
+                <th>Personal Email</th>
+                <th>Work Email</th>
+                <th>Contact</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alum in alumni %}
+            <tr>
+                <td>{{ alum.name }}</td>
+                <td>{{ alum.graduation_year }}</td>
+                <td>{{ alum.department }}</td>
+                <td>{{ alum.company_name }}</td>
+                <td>{{ alum.company_description }}</td>
+                <td><a href="{{ alum.linkedin_profile }}" target="_blank">Profile</a></td>
+                <td>{{ alum.personal_email }}</td>
+                <td>{{ alum.work_email }}</td>
+                <td>{{ alum.contact_number }}</td>
+                <td>
+                    <a href="{% url 'edit_alumni' alum.id %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'delete_alumni' alum.id %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="10" class="text-center">No records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{% url 'add_alumni' %}" class="btn btn-success">Add Alumni</a>
+</div>
+{% endblock %}
